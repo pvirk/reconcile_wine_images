@@ -12,7 +12,7 @@ module.exports.getImageInfo = (imageURL, associated_entity_id,  callback) => {
 				const imageRow = {
 				  "associated_entity_id": associated_entity_id,
 				  "imageURL": imageURL,
-				  "metadata": JSON.stringify(result)
+				  "metadata": result
 				};
 				callback(imageRow);
 		 	}else{		
