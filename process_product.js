@@ -17,9 +17,16 @@ const missing_wine_image_file_name = 'missing_wine_urls.csv';
 const low_res_cloudinary_image_file_name = 'low_res_cloudinary_urls.csv';
 
 
-csv()
-.fromFile(csvFilePath)
-.on('json',(jsonObj)=>{
+// csv()
+// .fromFile(csvFilePath)
+// .on('json',(jsonObj)=>{
+// 	processProductchecks(jsonObj);
+// })
+// .on('done',(error)=>{
+// 	console.log('end')
+// })
+
+function processProductchecks(jsonObj){
 	// combine csv header row and csv line to a json object
 	 const wineImageURL_l = wineImageURLBase + jsonObj.associated_entity_id + 'l.jpg';
 	 const wineImageURL_h = wineImageURLBase + jsonObj.associated_entity_id + 'h.jpg';
@@ -70,10 +77,8 @@ csv()
 	 		});
 	 	}
 	 })
-})
-.on('done',(error)=>{
-	console.log('end')
-})
+}
+
 
 function writeToFile_h(fileContent) {
     var csv = json2csv({ data: fileContent, fields: fields , hasCSVColumnTitle: false});
@@ -108,3 +113,5 @@ function writeToFile_low_res_cloudinary_image(fileContent) {
       }
     });
 }
+
+module.exports.processProductchecks = processProductchecks; 

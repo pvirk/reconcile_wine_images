@@ -13,6 +13,8 @@
     "fs": "0.0.1-security",
     "image-size": "^0.6.2",
     "imagesize": "^1.0.0",
-    "json2csv": "^3.11.5"
+    "json2csv": "^3.11.5",
+    "express": "~4.0.0",
+    "body-parser": "~1.0.1"
   }
 }
