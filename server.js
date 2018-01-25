@@ -26,9 +26,10 @@ router.get('/', function(req, res) {
 });
 
 router.post('/', function (req, res) {
-  res.send('POST associated_entity_id: ' + JSON.stringify(req.body.associated_entity_id))
-  //console.log(req.body);
-  process_product.processProductchecks(req.body);
+  console.log(req.body);
+  res.json({ message: 'Processed associated_entity_id: ' +  req.body.associated_entity_id, 
+  			 associated_entity_id: req.body.associated_entity_id});
+  process_product.processProductchecks({associated_entity_id: req.body.associated_entity_id});
 })
 
 // more routes for our API will happen here
@@ -36,6 +37,12 @@ router.post('/', function (req, res) {
 // REGISTER OUR ROUTES -------------------------------
 // all of our routes will be prefixed with /api
 app.use('/api', router);
+
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke while processing body.associated_entity_id: ' + req.body.associated_entity_id)
+})
+
 
 // START THE SERVER
 // =============================================================================
